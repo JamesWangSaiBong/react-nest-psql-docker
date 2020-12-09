@@ -1,0 +1,15 @@
+FROM node:12.20.0-alpine3.10
+
+EXPOSE 8080 
+
+RUN mkdir -p /app/public /app/src
+WORKDIR /app
+
+COPY tsconfig.json /app/tsconfig.json
+COPY package*.json /app/
+
+## install only the packages defined in the package-lock.json (faster than the normal npm install)
+RUN npm install
+
+# Run 'npm run dev' when the container starts.
+CMD ["npm", "start"]
