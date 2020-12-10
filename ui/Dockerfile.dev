@@ -5,11 +5,18 @@ EXPOSE 8080
 RUN mkdir -p /app/public /app/src
 WORKDIR /app
 
+# add `/app/node_modules/.bin` to $PATH
+ENV PATH /app/node_modules/.bin:$PATH
+
+# install app dependencies
 COPY tsconfig.json /app/tsconfig.json
 COPY package*.json /app/
 
-## install only the packages defined in the package-lock.json (faster than the normal npm install)
-RUN npm install
+RUN npm install --silent
+RUN npm install react-scripts@3.4.1 -g --silent
 
-# Run 'npm run dev' when the container starts.
+# add app
+COPY . ./
+
+# start app
 CMD ["npm", "start"]
