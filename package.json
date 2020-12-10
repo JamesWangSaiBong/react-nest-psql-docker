@@ -7,6 +7,7 @@
     "docker:build": "docker-compose -p react-nest-psql-docker build",
     "docker:down": "docker-compose -p react-nest-psql-docker down",
     "docker:up": "docker-compose -p react-nest-psql-docker up",
+    "service:update_packages": "docker-compose -p react-nest-psql-docker up --build -V",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
